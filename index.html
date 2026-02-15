@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Galentine?</title>
+<title>Valentine?</title>
 
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@ body {
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    width: 320px;
+    width: 330px;
 }
 
 h1 {
@@ -31,19 +31,19 @@ h1 {
 
 @keyframes heartbeat {
     0% { transform: scale(1); }
-    25% { transform: scale(1.05); }
+    25% { transform: scale(1.06); }
     50% { transform: scale(1); }
-    75% { transform: scale(1.05); }
+    75% { transform: scale(1.06); }
 }
 
 .buttons {
-    margin-top: 20px;
+    margin-top: 25px;
     position: relative;
-    height: 80px;
+    height: 90px;
 }
 
 button {
-    padding: 12px 25px;
+    padding: 12px 26px;
     border: none;
     border-radius: 25px;
     font-size: 16px;
@@ -72,11 +72,11 @@ button:hover {
     margin-top: 25px;
     font-size: 18px;
     font-weight: bold;
-    animation: pop 0.5s ease;
+    animation: pop 0.4s ease;
 }
 
 @keyframes pop {
-    0% { transform: scale(0.5); opacity: 0; }
+    0% { transform: scale(0.6); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
 </style>
@@ -85,7 +85,7 @@ button:hover {
 <body>
 
 <div class="card">
-    <h1>Will you be my Galentine? 💖</h1>
+    <h1>Will you be my Valentine? 💘</h1>
 
     <div class="buttons">
         <button class="yes" onclick="yesClick()">Yes</button>
@@ -96,22 +96,29 @@ button:hover {
 </div>
 
 <script>
-function yesClick() {
-    document.getElementById("result").innerHTML =
-        "But you already have a boyfriend, girl 😌💔";
-}
-
+let noMoveCount = 0;
+const maxMoves = 4;
 const noBtn = document.getElementById("noBtn");
 
+function yesClick() {
+    document.getElementById("result").innerHTML =
+        "You mean it’s a date 💖🥹";
+}
+
 noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * 200 - 100;
-    const y = Math.random() * 80 - 40;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    if (noMoveCount < maxMoves) {
+        const x = Math.random() * 220 - 110;
+        const y = Math.random() * 80 - 40;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        noMoveCount++;
+    }
 });
 
 noBtn.addEventListener("click", () => {
-    document.getElementById("result").innerHTML =
-        "I know you hate me 😔";
+    if (noMoveCount >= maxMoves) {
+        document.getElementById("result").innerHTML =
+            "Ok bye… sadly , I know you hate me 😔";
+    }
 });
 </script>
 
